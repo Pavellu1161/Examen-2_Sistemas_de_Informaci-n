@@ -1,0 +1,127 @@
+﻿@model Examen_2.Common.Pagination<Homework>
+
+@{
+    ViewData["Title"] = "Tareas";
+}
+
+<div class="row">
+    <div class="col-auto">
+        <h1 class="text-light Titulo">Tareas <a asp-action="Create" class="btn btn-info">Crear Nuevo</a> <a class="btn btn-info" onclick="homework_search()" id="search-link"><i class="fas fa-search"></i> Buscar</a></h1>
+    </div>
+    <div class="col-auto txtbox" style="margin-top: 9px;">
+        <input type="text" class="form-control-plaintext Parrafo alert-light" id="txt-searchTarea" placeholder="Buscar..." />
+    </div>
+</div>
+<div class="row">
+    <table class="table text-light Parrafo table-sm tabla">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Result.SingleOrDefault().Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Result.SingleOrDefault().CreationDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Result.SingleOrDefault().FinalDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Result.SingleOrDefault().CategoryType)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Result)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CreationDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FinalDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CategoryType.CategoryName)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.TaskId" class="btn btn-info btn-sm"><i class="fas fa-user-edit"></i>Edit</a>
+                        <a asp-action="Details" asp-route-id="@item.TaskId" class="btn btn-info btn-sm"><i class="fas fa-info-circle"></i> Details</a>
+                        <a asp-action="Delete" asp-route-id="@item.TaskId" class="btn btn-info btn-sm"><i class="fas fa-eraser"></i>Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div class="text-light Parrafo">
+    @if (Model.Result.Count() > 0)
+    {
+        <span class="text-light Parrafo">
+            <strong>@Model.TotalRecords</strong> registros encontrados
+        </span>
+        <span class="text-light"> | </span>
+        <span class="text-light Parrafo">
+            Pagina <strong>@Model.CurrentPage</strong> de
+            <strong>@Model.TotalPage</strong>
+        </span>
+        <span class="text-light"> | </span>
+    }
+    else
+    {
+        <span class="text-light Parrafo">No hay resultados para esta busqueda</span>
+        <span> | </span>
+    }
+
+    @if (Model.CurrentPage > 1)
+    {
+        @Html.ActionLink("<<", "Index", new { Page = 1, Search = Model.Search },
+                new { @class = "btn btn-sm btn-default" })
+
+        <span></span>
+
+        @Html.ActionLink("Anterior", "Index", new { Page = Model.CurrentPage - 1, Search = Model.Search },
+                new { @class = "btn btn-sm btn-default" })
+    }
+    else
+    {
+        @Html.ActionLink("<<", "Index", new { Page = 1, Search = Model.Search },
+                new { @class = "btn btn-sm btn-default disabled" })
+
+        <span></span>
+
+        @Html.ActionLink("Anterior", "Index", new { Page = 1, Search = Model.Search },
+                new { @class = "btn btn-sm btn-default disabled" })
+
+    }
+
+    <span></span>
+
+    @if (Model.CurrentPage < Model.TotalPage)
+    {
+        @Html.ActionLink("Siguiente", "Index", new { Page = Model.CurrentPage + 1, Search = Model.Search },
+                new { @class = "btn btn-sm btn-default" })
+
+        <span></span>
+
+        @Html.ActionLink(">>", "Index", new { Page = Model.TotalPage, Search = Model.Search },
+                new { @class = "btn btn-sm btn-default" })
+
+    }
+    else
+    {
+        @Html.ActionLink("Siguiente", "Index", new { Page = Model.CurrentPage - 1, Search = Model.Search },
+                new { @class = "btn btn-sm btn-default disabled" })
+
+        <span></span>
+
+        @Html.ActionLink(">>", "Index", new { Page = Model.TotalPage, Search = Model.Search },
+                new { @class = "btn btn-sm btn-default disabled" })
+    }
+</div>
+
+<link rel="stylesheet" href="~/css/stilos.css" />
+<script src="~/js/busqueda.js" asp-append-version="true"></script>

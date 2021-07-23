@@ -1,0 +1,23 @@
+﻿@model Examen_2.Models.CategoryType
+
+@{
+    ViewData["Title"] = "Delete";
+}
+<h4 class="text-danger Titulo">Eliminar Categoría</h4>
+<div>
+    <hr />
+    <dl class="row Parrafo text-light">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CategoryName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CategoryName)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete" class="Parrafo text-dark">
+        <input type="hidden" asp-for="CategoryId" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Index" class="btn btn-danger"><i class="fas fa-arrow-circle-left"></i> Regresar</a>
+    </form>
+</div>

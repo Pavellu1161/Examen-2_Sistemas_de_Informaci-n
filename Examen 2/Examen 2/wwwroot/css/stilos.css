@@ -1,0 +1,28 @@
+﻿body {
+}
+
+.Titulo {
+    font-family: Impact;
+}
+
+.Parrafo {
+    font-family: Impact;
+    font-size: 15px;
+}
+
+.tabla {
+    border-collapse: collapse;
+    border-spacing: 40px;
+}
+
+.txtbox {
+    
+    border-radius: 20px;
+}
+
+.Parrafo2 {
+    font-family: Impact;
+    font-size: 20px;
+    border-bottom: 2px;
+    border-bottom-color: white;
+}

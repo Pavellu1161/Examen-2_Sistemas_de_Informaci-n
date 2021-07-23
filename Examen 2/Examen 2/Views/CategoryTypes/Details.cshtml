@@ -1,0 +1,22 @@
+﻿@model Examen_2.Models.CategoryType
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h4 class="text-primary Titulo">Detalles Categoría</h4>
+<div>
+    <hr />
+    <dl class="row text-light Parrafo">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CategoryName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CategoryName)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.CategoryId" class="btn btn-primary Parrafo">Editar</a>
+    <a asp-action="Index" class="btn btn-primary Parrafo"><i class="fas fa-arrow-circle-left"></i> Regresar</a>
+</div>

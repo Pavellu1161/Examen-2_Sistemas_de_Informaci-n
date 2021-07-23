@@ -1,0 +1,43 @@
+﻿@model Examen_2.Models.Homework
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h4 class="Titulo text-success">Crear Tarea</h4>
+<hr />
+<div class="row text-light Parrafo">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CreationDate" class="control-label"></label>
+                <input asp-for="CreationDate" class="form-control" />
+                <span asp-validation-for="CreationDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FinalDate" class="control-label"></label>
+                <input asp-for="FinalDate" class="form-control" />
+                <span asp-validation-for="FinalDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.CategoryType.CategoryName" class="control-label"></label>
+                <select asp-for="CategoryId" class ="form-control" asp-items="ViewBag.CategoryId"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Crear" class="btn btn-success" />
+                <a asp-action="Index" class="btn btn-success"><i class="fas fa-arrow-circle-left"></i> Regresar</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
